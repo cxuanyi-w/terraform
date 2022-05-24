@@ -3,3 +3,7 @@
 /.terraform
 terraform.tfstate.backup
 terraform.tfstate
+secrets.tfvars
+accessToken.txt
+accesskey
+accesskey.pub
