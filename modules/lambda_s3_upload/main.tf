@@ -2,7 +2,7 @@
 resource "aws_lambda_function" "lambda_with_s3_upload" {
   # If the file is not in the current working directory you will need to include a 
   # path.module in the filename.
-  function_name = "terraform_lambda_upload_from_s3"
+  function_name = var.target_function_name
   role          = var.target_iam_role
   runtime       = "python3.9"
   handler       = "main.handler"

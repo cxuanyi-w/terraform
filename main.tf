@@ -18,15 +18,23 @@ module "iam" {
   source = "./modules/iam"
 }
 
-module "lambda_with_local_upload" {
-  source = "./modules/lambda_local_upload"
-  target_iam_role = module.iam.lambda_iam_role
-}
+# module "lambda_with_local_upload" {
+#   source = "./modules/lambda_local_upload"
+#   target_iam_role = module.iam.lambda_iam_role
+# }
 
 module "lambda_with_s3_upload" {
   source = "./modules/lambda_s3_upload"
+  target_function_name = var.target_lambda_name
   target_iam_role = module.iam.lambda_iam_role
   target_s3_bucket = module.s3.s3_bucket_name
   target_s3_object_name = module.s3.s3_uploaded_object_name
   target_s3_object_hash = module.s3.s3_uploaded_object_hash
+}
+
+module "api_gw" {
+  source = "./modules/api_gw"
+  rest_api_name = "lambda-lab-api-gw"
+  target_lambda_name = var.target_lambda_name
+  target_lambda_arn = module.lambda_with_s3_upload.created_lambda_invoke_arn
 }

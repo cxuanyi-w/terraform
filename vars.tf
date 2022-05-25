@@ -9,3 +9,6 @@ variable "private_subnets_cidr" {}
 # S3 variables
 variable "bucket_name" {}
 variable "acl_value" {}
+
+# Lambda variables
+variable "target_lambda_name" {}

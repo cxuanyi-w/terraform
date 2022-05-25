@@ -23,3 +23,8 @@ output "s3_uploaded_object_hash" {
 output "lambda_iam_role_created" {
   value = module.iam.lambda_iam_role
 }
+
+output "created_lambda_invoke_arn" {
+  value = module.lambda_with_s3_upload.created_lambda_invoke_arn
+}
+

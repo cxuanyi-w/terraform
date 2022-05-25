@@ -1,4 +1,9 @@
 # S3 related variable required for uploading file to Lambda
+variable "target_function_name" {
+  type        = string
+  description = "The role to be used for lambda."
+}
+
 variable "target_iam_role" {
   type        = string
   description = "The role to be used for lambda."
