@@ -7,3 +7,4 @@ accessToken.txt
 accesskey
 accesskey.pub
 .terraform.tfstate.lock.info
+terraform.tfstate.backup
