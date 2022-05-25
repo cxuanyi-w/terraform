@@ -5,7 +5,7 @@ resource "aws_lambda_function" "lambda_with_local_upload" {
   filename      = "${path.module}/function.zip"
   function_name = "terraform_lambda_upload_from_local"
   role          = var.target_iam_role
-  handler       = "main.handler"
+  handler       = "src.main.handler"
 
   # The filebase64sha256() function is available in Terraform 0.11.12 and later
   # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:

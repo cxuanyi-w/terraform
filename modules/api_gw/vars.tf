@@ -14,3 +14,8 @@ variable "target_lambda_name" {
   description = "Target lambda name."
 }
 
+variable "target_region" {
+  type        = string
+  description = "Target region."
+}
+

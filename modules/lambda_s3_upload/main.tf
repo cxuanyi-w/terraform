@@ -5,7 +5,7 @@ resource "aws_lambda_function" "lambda_with_s3_upload" {
   function_name = var.target_function_name
   role          = var.target_iam_role
   runtime       = "python3.9"
-  handler       = "main.handler"
+  handler       = "src.main.handler"
 
   s3_bucket = var.target_s3_bucket
   s3_key    = var.target_s3_object_name

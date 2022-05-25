@@ -37,4 +37,5 @@ module "api_gw" {
   rest_api_name = "lambda-lab-api-gw"
   target_lambda_name = var.target_lambda_name
   target_lambda_arn = module.lambda_with_s3_upload.created_lambda_invoke_arn
+  target_region = var.region
 }
