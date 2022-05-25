@@ -1,9 +1,9 @@
 *.zip
 .terraform.lock.hcl
 /.terraform
-terraform.tfstate.backup
 terraform.tfstate
 secrets_vars.tf
 accessToken.txt
 accesskey
 accesskey.pub
+.terraform.tfstate.lock.info

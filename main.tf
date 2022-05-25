@@ -14,6 +14,13 @@ module "s3" {
   acl_value = var.acl_value
 }
 
-# module "lambda" {
-#   source = "./modules/lambda"
-# }
+module "lambda_with_local_upload" {
+  source = "./modules/lambda_local_upload"
+}
+
+module "lambda_with_s3_upload" {
+  source = "./modules/lambda_s3_upload"
+  target_s3_bucket = module.s3.s3_bucket_name
+  target_s3_object_name = module.s3.s3_uploaded_object_name
+  target_s3_object_hash = module.s3.s3_uploaded_object_hash
+}
