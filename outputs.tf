@@ -12,10 +12,14 @@ output "s3_bucket_name" {
   value = module.s3.s3_bucket_name
 }
 
-output "s3_upload_object_name" {
-  value = module.s3.s3_uploaded_object_name
+output "lambda_iam_role" {
+  value = module.iam.lambda_iam_role
 }
 
 output "s3_uploaded_object_hash" {
   value = module.s3.s3_uploaded_object_hash
+}
+
+output "lambda_iam_role_created" {
+  value = module.iam.lambda_iam_role
 }
