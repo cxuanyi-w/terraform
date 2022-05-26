@@ -40,6 +40,7 @@ resource "aws_api_gateway_method" "unit-info-get-method" {
   }
 }
 
+# Create the model in api gateway
 resource "aws_api_gateway_model" "apisvc-apig-unit-info-model" {
   rest_api_id  = aws_api_gateway_rest_api.lambda-lab-api-gw-section.id
   name         = "UnitInfoModel"
@@ -79,6 +80,7 @@ resource "aws_api_gateway_integration" "unit-info-integration" {
   ]
 }
 
+# Create response back to requester
 resource "aws_api_gateway_method_response" "unit-Info-method-response-200" {
   rest_api_id = aws_api_gateway_rest_api.lambda-lab-api-gw-section.id
   resource_id = aws_api_gateway_resource.proxy_resource_section.id
