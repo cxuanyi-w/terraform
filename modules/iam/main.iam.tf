@@ -1,5 +1,5 @@
 resource "aws_iam_role" "new_lambda_iam_role" {
-  name = "new_lambda_iam_role"
+  name = "cxy_lambda_iam_role"
 
   assume_role_policy = <<EOF
 {
