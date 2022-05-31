@@ -1,6 +1,6 @@
 ################### VPC ###################
 # Create the VPC
-resource "aws_vpc" "cxy-terraform-vpc-section" { # Creating VPC here
+resource "aws_vpc" "create_vpc_sect" { # Creating VPC here
   cidr_block           = var.input-vpc_cidr      # Defining the CIDR block use 10.0.0.0/24 for demo
   instance_tenancy     = var.input-instance_tenancy
   enable_dns_support   = var.input-enable_dns_support
@@ -12,8 +12,8 @@ resource "aws_vpc" "cxy-terraform-vpc-section" { # Creating VPC here
 }
 
 # Create Internet Gateway and attach it to VPC
-resource "aws_internet_gateway" "cxy-terraform-igw-section" { # Creating Internet Gateway
-  vpc_id = aws_vpc.cxy-terraform-vpc-section.id               # vpc_id will be generated after we create VPC
+resource "aws_internet_gateway" "create_igw_sect" { # Creating Internet Gateway
+  vpc_id = aws_vpc.create_vpc_sect.id               # vpc_id will be generated after we create VPC
 
   tags = {
     Name = var.input-igw_name # This sets the name of the VPC
@@ -21,8 +21,8 @@ resource "aws_internet_gateway" "cxy-terraform-igw-section" { # Creating Interne
 }
 
 # Create the Security Group for the VPC with [Security group name] === "default"
-resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
-  vpc_id = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_default_security_group" "create_def_sg_sect" {
+  vpc_id = aws_vpc.create_vpc_sect.id
 
   # Allow all incoming
   # ***Note: Should be removed during deployment beyond local
@@ -49,8 +49,8 @@ resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
 
 ################### PUBLIC subnet ###################
 # Create a Public Subnets
-resource "aws_subnet" "cxy-terraform-public-subnet-section" { # Creating Public Subnets
-  vpc_id     = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_subnet" "create_pub_sn_sect" { # Creating Public Subnets
+  vpc_id     = aws_vpc.create_vpc_sect.id
   cidr_block = var.input-public_subnet_cidr # CIDR block of public subnets
 
   tags = {
@@ -59,12 +59,12 @@ resource "aws_subnet" "cxy-terraform-public-subnet-section" { # Creating Public 
 }
 
 # Route table for Public Subnet
-resource "aws_route_table" "cxy-terraform-public-routetable-section" { # Creating RT for Public Subnet
-  vpc_id = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_route_table" "create_pub_sn_rt_sect" { # Creating RT for Public Subnet
+  vpc_id = aws_vpc.create_vpc_sect.id
 
   route {
     cidr_block = "0.0.0.0/0" # Traffic from Public Subnet reaches Internet via Internet Gateway
-    gateway_id = aws_internet_gateway.cxy-terraform-igw-section.id
+    gateway_id = aws_internet_gateway.create_igw_sect.id
   }
 
   tags = {
@@ -73,15 +73,15 @@ resource "aws_route_table" "cxy-terraform-public-routetable-section" { # Creatin
 }
 
 # Route table Association with Public Subnet's
-resource "aws_route_table_association" "public-subnet-public-routetable-associate" {
-  subnet_id      = aws_subnet.cxy-terraform-public-subnet-section.id
-  route_table_id = aws_route_table.cxy-terraform-public-routetable-section.id
+resource "aws_route_table_association" "create_pub_sn_pub_rt_assoc_sect" {
+  subnet_id      = aws_subnet.create_pub_sn_sect.id
+  route_table_id = aws_route_table.create_pub_sn_rt_sect.id
 }
 
 ################### PRIVATE subnet 1 ###################
 # Creating Private Subnets
-resource "aws_subnet" "cxy-terraform-private-subnet-section-1" {
-  vpc_id            = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_subnet" "create_pte_sn_1_sect" {
+  vpc_id            = aws_vpc.create_vpc_sect.id
   cidr_block        = var.input-private_subnet_cidr_1 # CIDR block of private subnets
   availability_zone = var.input-private_subnet_az_1
 
@@ -91,8 +91,8 @@ resource "aws_subnet" "cxy-terraform-private-subnet-section-1" {
 }
 
 # Route table for PRIVATE Subnet
-resource "aws_route_table" "cxy-terraform-private-routetable-section-1" { # Creating RT for Private Subnet
-  vpc_id = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_route_table" "create_pte_sn_1_rt_sect" { # Creating RT for Private Subnet
+  vpc_id = aws_vpc.create_vpc_sect.id
 
   tags = {
     Name = var.input-private_rt_name_1 # This sets the name of the route table
@@ -100,15 +100,15 @@ resource "aws_route_table" "cxy-terraform-private-routetable-section-1" { # Crea
 }
 
 # Route table Association with Private Subnet
-resource "aws_route_table_association" "public-subnet-private-routetable-associate-1" {
-  subnet_id      = aws_subnet.cxy-terraform-private-subnet-section-1.id
-  route_table_id = aws_route_table.cxy-terraform-private-routetable-section-1.id
+resource "aws_route_table_association" "create_pte_sn_1_pte_rt_1_assoc_sect" {
+  subnet_id      = aws_subnet.create_pte_sn_1_sect.id
+  route_table_id = aws_route_table.create_pte_sn_1_rt_sect.id
 }
 
 ################### Private subnet 2 ###################
 # Creating Private Subnet
-resource "aws_subnet" "cxy-terraform-private-subnet-section-2" {
-  vpc_id            = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_subnet" "create_pte_sn_2_sect" {
+  vpc_id            = aws_vpc.create_vpc_sect.id
   cidr_block        = var.input-private_subnet_cidr_2 # CIDR block of private subnets
   availability_zone = var.input-private_subnet_az_2
 
@@ -118,8 +118,8 @@ resource "aws_subnet" "cxy-terraform-private-subnet-section-2" {
 }
 
 # Route table for Private Subnet
-resource "aws_route_table" "cxy-terraform-private-routetable-section-2" { # Creating RT for Private Subnet
-  vpc_id = aws_vpc.cxy-terraform-vpc-section.id
+resource "aws_route_table" "create_pte_sn_2_pte_rt_2_assoc_sect" { # Creating RT for Private Subnet
+  vpc_id = aws_vpc.create_vpc_sect.id
 
   tags = {
     Name = var.input-private_rt_name_2 # This sets the name of the route table
@@ -128,11 +128,11 @@ resource "aws_route_table" "cxy-terraform-private-routetable-section-2" { # Crea
 
 ################### Private Subnet Group  ###################
 #aws_db_subnet_group
-resource "aws_db_subnet_group" "default" {
+resource "aws_db_subnet_group" "create_def_db_sn_grp_sect" {
   name = var.input-aws_db_subnet_group_name
   subnet_ids = [
-    aws_subnet.cxy-terraform-private-subnet-section-2.id,
-    aws_subnet.cxy-terraform-private-subnet-section-1.id
+    aws_subnet.create_pte_sn_2_sect.id,
+    aws_subnet.create_pte_sn_1_sect.id
   ]
 
   tags = {
