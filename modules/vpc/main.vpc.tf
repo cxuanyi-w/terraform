@@ -43,7 +43,7 @@ resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
   }
 
   tags = {
-    Name = var.igw_name
+    Name = var.input-igw_name # This sets the name of the igw
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_subnet" "cxy-terraform-public-subnet-section" { # Creating Public 
   cidr_block = var.input-public_subnet_cidr # CIDR block of public subnets
 
   tags = {
-    Name = "cxy-terraform-public-subnet" # This sets the name of the VPC
+    Name = var.input-public_subnet_name # This sets the name of the subnet
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_route_table" "cxy-terraform-public-routetable-section" { # Creatin
   }
 
   tags = {
-    Name = "cxy-terraform-public-subnet-routetable" # This sets the name of the VPC
+    Name = var.input-public_rt_name # This sets the name of the VPC
   }
 }
 
@@ -82,11 +82,11 @@ resource "aws_route_table_association" "public-subnet-public-routetable-associat
 # Creating Private Subnets
 resource "aws_subnet" "cxy-terraform-private-subnet-section-1" {
   vpc_id            = aws_vpc.cxy-terraform-vpc-section.id
-  cidr_block        = var.input-private_subnets_cidr_1 # CIDR block of private subnets
-  availability_zone = "ap-southeast-1a"
+  cidr_block        = var.input-private_subnet_cidr_1 # CIDR block of private subnets
+  availability_zone = var.input-private_subnet_az_1
 
   tags = {
-    Name = "cxy-terraform-private-subnet-1" # This sets the name of the VPC
+    Name = var.input-private_subnet_name_1 # This sets the name of the subnet
   }
 }
 
@@ -95,7 +95,7 @@ resource "aws_route_table" "cxy-terraform-private-routetable-section-1" { # Crea
   vpc_id = aws_vpc.cxy-terraform-vpc-section.id
 
   tags = {
-    Name = "cxy-terraform-private-subnet-routetable-1" # This sets the name of the VPC
+    Name = var.input-private_rt_name_1 # This sets the name of the route table
   }
 }
 
@@ -109,11 +109,11 @@ resource "aws_route_table_association" "public-subnet-private-routetable-associa
 # Creating Private Subnet
 resource "aws_subnet" "cxy-terraform-private-subnet-section-2" {
   vpc_id            = aws_vpc.cxy-terraform-vpc-section.id
-  cidr_block        = var.input-private_subnets_cidr_2 # CIDR block of private subnets
-  availability_zone = "ap-southeast-1b"
+  cidr_block        = var.input-private_subnet_cidr_2 # CIDR block of private subnets
+  availability_zone = var.input-private_subnet_az_2
 
   tags = {
-    Name = "cxy-terraform-private-subnet-2" # This sets the name of the VPC
+    Name = var.input-private_subnet_name_2 # This sets the name of the subnet
   }
 }
 
@@ -122,20 +122,20 @@ resource "aws_route_table" "cxy-terraform-private-routetable-section-2" { # Crea
   vpc_id = aws_vpc.cxy-terraform-vpc-section.id
 
   tags = {
-    Name = "cxy-terraform-private-subnet-routetable-2" # This sets the name of the VPC
+    Name = var.input-private_rt_name_2 # This sets the name of the route table
   }
 }
 
 ################### Private Subnet Group  ###################
 #aws_db_subnet_group
 resource "aws_db_subnet_group" "default" {
-  name = "cxy-terraform-private-subnet-group"
+  name = var.input-aws_db_subnet_group_name
   subnet_ids = [
     aws_subnet.cxy-terraform-private-subnet-section-2.id,
     aws_subnet.cxy-terraform-private-subnet-section-1.id
   ]
 
   tags = {
-    Name = "CXY Terraform Private Subnet Group for DB"
+    Name = var.input-aws_db_subnet_group_tags_name
   }
 }

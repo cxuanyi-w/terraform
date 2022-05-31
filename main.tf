@@ -9,11 +9,24 @@ module "vpc_module" {
   input-vpc_name             = var.input-vpc_name
   # IGW variables
   input-igw_name = var.input-igw_name
+  # Public subnet variables
+  input-public_subnet_name = var.input-public_subnet_name
+  input-public_subnet_cidr = var.input-public_subnet_cidr
+  input-public_rt_name     = var.input-public_rt_name
+  # Private subnet 1 variables
+  input-private_subnet_cidr_1 = var.input-private_subnet_cidr_1
+  input-private_subnet_az_1   = var.input-private_subnet_az_1
+  input-private_subnet_name_1 = var.input-private_subnet_name_1
+  input-private_rt_name_1     = var.input-private_rt_name_1
+  # Private subnet 2 variables
+  input-private_subnet_cidr_2 = var.input-private_subnet_cidr_2
+  input-private_subnet_az_2   = var.input-private_subnet_az_2
+  input-private_subnet_name_2 = var.input-private_subnet_name_2
+  input-private_rt_name_2     = var.input-private_rt_name_2
+  # Subnet Group for DB
+  input-aws_db_subnet_group_name = var.input-aws_db_subnet_group_name
+  input-aws_db_subnet_group_tags_name = var.input-aws_db_subnet_group_tags_name
 
-
-  input-public_subnet_cidr     = var.input-public_subnet_cidr
-  input-private_subnets_cidr_1 = var.input-private_subnets_cidr_1
-  input-private_subnets_cidr_2 = var.input-private_subnets_cidr_2
 }
 
 # module "s3" {
