@@ -1,14 +1,15 @@
-# Initiate Provider variables
+############ Initiate Provider variables############
 region = "ap-southeast-1"
 
-# Initiate VPC & Subnets variables
+############ Initiate Provider variables############
+# VPC variables
 input-vpc_cidr             = "192.168.0.0/24" # 256 host ip adddresses
 input-instance_tenancy     = "default"
 input-enable_dns_support   = true
 input-enable_dns_hostnames = true
 input-vpc_name = "cxy-terraform-vpc-1"
-
-
+# IGW variables
+input-igw_name = "cxy-terraform-vpc-igw"
 
 
 input-public_subnet_cidr     = "192.168.0.0/26"   # 128 host ip addresseses, from 192.168.0.0 to 192.168.0.63

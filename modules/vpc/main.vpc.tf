@@ -16,14 +16,16 @@ resource "aws_internet_gateway" "cxy-terraform-igw-section" { # Creating Interne
   vpc_id = aws_vpc.cxy-terraform-vpc-section.id               # vpc_id will be generated after we create VPC
 
   tags = {
-    Name = "cxy-terraform-vpc-igw" # This sets the name of the VPC
+    Name = var.input-igw_name # This sets the name of the VPC
   }
 }
 
-# Create the Security Group for the VPC
+# Create the Security Group for the VPC with [Security group name] === "default"
 resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
   vpc_id = aws_vpc.cxy-terraform-vpc-section.id
 
+  # Allow all incoming
+  # ***Note: Should be removed during deployment beyond local
   ingress {
     protocol  = -1
     self      = true
@@ -31,6 +33,8 @@ resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
     to_port   = 0
   }
 
+  # Allow all outgoing
+  # ***Note: Should be removed during deployment beyond local 
   egress {
     from_port   = 0
     to_port     = 0

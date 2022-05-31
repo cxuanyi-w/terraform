@@ -7,6 +7,9 @@ module "vpc_module" {
   input-enable_dns_support   = var.input-enable_dns_support
   input-enable_dns_hostnames = var.input-enable_dns_hostnames
   input-vpc_name             = var.input-vpc_name
+  # IGW variables
+  input-igw_name = var.input-igw_name
+
 
   input-public_subnet_cidr     = var.input-public_subnet_cidr
   input-private_subnets_cidr_1 = var.input-private_subnets_cidr_1
