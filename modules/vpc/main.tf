@@ -125,3 +125,17 @@ resource "aws_route_table" "cxy-terraform-private-routetable-section-2" { # Crea
     Name = "cxy-terraform-private-subnet-routetable-2" # This sets the name of the VPC
   }
 }
+
+################### Private Subnet Group  ###################
+#aws_db_subnet_group
+resource "aws_db_subnet_group" "default" {
+  name       = "cxy-terraform-private-subnet-group"
+  subnet_ids = [
+    aws_subnet.cxy-terraform-private-subnet-section-2.id, 
+    aws_subnet.cxy-terraform-private-subnet-section-1.id
+  ]
+
+  tags = {
+    Name = "CXY Terraform Private Subnet Group for DB"
+  }
+}
