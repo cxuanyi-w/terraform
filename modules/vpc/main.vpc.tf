@@ -43,7 +43,7 @@ resource "aws_default_security_group" "cxy-terraform-vpc-sg" {
   }
 
   tags = {
-    Name = "cxy-terraform-vpc-default-sg"
+    Name = var.igw_name
   }
 }
 
