@@ -1,16 +1,25 @@
-# Provider variables
+# Declare Provider variables
 variable "region" {}
 
-# VPC variables
-variable "main_vpc_cidr" {}
-variable "public_subnets_cidr" {}
-variable "private_subnets_cidr_1" {}
-variable "private_subnets_cidr_2" {}
+# Declare VPC & Subnets  variables
+variable "input-vpc_cidr" {}
+variable "input-instance_tenancy" {}
+variable "input-enable_dns_support" {}
+variable "input-enable_dns_hostnames" {}
+variable "input-vpc_name" {}
 
-# S3 variables
+variable "input-public_subnet_cidr" {}
+variable "input-private_subnets_cidr_1" {}
+variable "input-private_subnets_cidr_2" {}
+
+# Declare S3 variables
 variable "bucket_name" {}
 variable "acl_value" {}
 
-# Lambda variables
+# Declare Local Upload Lambda variables
 variable "local_upload_target_lambda_name" {}
+variable "local_upload_apigw_name" {}
+
+# Declare S3 Upload Lambda variables
 variable "s3_upload_lambda_name" {}
+variable "s3_upload_apigw_name" {}
