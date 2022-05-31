@@ -3,7 +3,7 @@ resource "aws_lambda_function" "lambda_with_local_upload" {
   # If the file is not in the current working directory you will need to include a 
   # path.module in the filename.
   filename      = "${path.module}/function.zip"
-  function_name = "terraform_lambda_upload_from_local"
+  function_name = var.input-function_name
   role          = var.target_iam_role
   handler       = "src.main.handler"
 

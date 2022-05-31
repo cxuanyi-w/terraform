@@ -7,5 +7,5 @@ private_subnets_cidr_2 = "192.168.0.128/26" # 128 host ip addresseses, from 192.
 
 bucket_name = "cxy-s3-terraform-bucket3" # unique bucket name
 acl_value   = "public"                 # acl value, private, public-read, public-read-write, authenticated-rea, aws-exec-read and log-delivery-write
-# target_lambda_name = "terraform_lambda_upload_from_local"
-target_lambda_name = "terraform_lambda_upload_from_s3"
+local_upload_target_lambda_name = "terraform_lambda_upload_from_local"
+s3_upload_lambda_name = "terraform_lambda_upload_from_s3"

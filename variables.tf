@@ -12,4 +12,5 @@ variable "bucket_name" {}
 variable "acl_value" {}
 
 # Lambda variables
-variable "target_lambda_name" {}
+variable "local_upload_target_lambda_name" {}
+variable "s3_upload_lambda_name" {}
