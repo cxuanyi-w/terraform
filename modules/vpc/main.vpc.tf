@@ -1,7 +1,7 @@
 ################### VPC ###################
 # Create the VPC
-resource "aws_vpc" "create_vpc_sect" { # Creating VPC here
-  cidr_block           = var.input-vpc_cidr      # Defining the CIDR block use 10.0.0.0/24 for demo
+resource "aws_vpc" "create_vpc_sect" {      # Creating VPC here
+  cidr_block           = var.input-vpc_cidr # Defining the CIDR block use 10.0.0.0/24 for demo
   instance_tenancy     = var.input-instance_tenancy
   enable_dns_support   = var.input-enable_dns_support
   enable_dns_hostnames = var.input-enable_dns_hostnames
@@ -21,7 +21,8 @@ resource "aws_internet_gateway" "create_igw_sect" { # Creating Internet Gateway
 }
 
 # Create the Security Group for the VPC with [Security group name] === "default"
-resource "aws_default_security_group" "create_def_sg_sect" {
+resource "aws_security_group" "create_def_sg_sect" {
+  name   = var.input-vpc_sg_name
   vpc_id = aws_vpc.create_vpc_sect.id
 
   # Allow all incoming
@@ -43,7 +44,7 @@ resource "aws_default_security_group" "create_def_sg_sect" {
   }
 
   tags = {
-    Name = var.input-igw_name # This sets the name of the igw
+    Name = var.input-vpc_sg_tags_name # This sets the name of the igw
   }
 }
 

@@ -10,6 +10,9 @@ input-enable_dns_hostnames = true
 input-vpc_name             = "tf-created-vpc-1"
 # IGW variables
 input-igw_name = "tf-created-vpc-igw"
+# Default Security Group variables
+input-vpc_sg_name = "tf-created-vpc-sg-name"
+input-vpc_sg_tags_name = "tf-created-vpc-sg-name"
 # Public subnet variables
 input-public_subnet_cidr = "192.168.0.0/26" # 128 host ip addresseses, from 192.168.0.0 to 192.168.0.63
 input-public_subnet_name = "tf-created-public-subnet"

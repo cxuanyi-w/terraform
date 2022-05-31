@@ -8,6 +8,10 @@ variable "input-vpc_name" {}
 # Declare IGW variables
 variable "input-igw_name" {}
 
+# Declare Default Security Group variables
+variable "input-vpc_sg_name" {}
+variable "input-vpc_sg_tags_name" {}
+
 # Declare Public Subnet variables
 variable "input-public_subnet_cidr" {}
 variable "input-public_subnet_name" {}
